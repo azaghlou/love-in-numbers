@@ -4,6 +4,10 @@ import simpy
 import statistics
 
 
+def probability(chance):
+    return random.random() < chance / 100
+
+
 class Partners(object):
     def __init__(self):
         self.ayzeh = 10
@@ -17,3 +21,10 @@ class Partners(object):
             return False
         else:
             return True
+
+
+class Relationship(object):
+    def __init__(self, partnera, partnerb, env):
+        self.env = env
+        self.partnera = partnera
+        self.partnerb = partnerb
