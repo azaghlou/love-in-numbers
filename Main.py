@@ -14,7 +14,7 @@ class Partners(object):
         self.badyeh = 10
         self.worth = random.random()
         self.mawada = 1
-        self.chaos = random.randint(-1, 3)
+        self.chaos = 1
         self.value = (self.mawada / self.worth) * self.ayzeh * self.chaos
 
     def BreakUp(self):
