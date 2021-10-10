@@ -154,6 +154,6 @@ while date != 120:
         relation[0].partnerb.value = (relation[0].partnerb.mawada / relation[0].partnerb.worth) * relation[
             0].partnerb.ayzeh * relation[0].partnerb.chaos
         if relation[0].breakup():
-            Relationships.remove(relation)
+            Relationships.remove(relation)  # del relation didn't work msh 3arf leh
     print("from outside loop" + str(len(Relationships)))
     print(n)
