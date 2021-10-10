@@ -24,12 +24,17 @@ class Partner(object):
             return True
 
 
+env = simpy.Environment()
+
+
 class Relationship(object):
-    def __init__(self, partnera, partnerb, env):
+    def __init__(self, env, partnera, partnerb):
         self.env = env
         self.partnera = partnera
         self.partnerb = partnerb
 
 
-Partners = [Partner() for _ in range(100)]
+Partners = [Partner() for _ in range(2000000)]
 print(Partners[1].value)
+for i in Partners:
+    Relationships = [Relationship(env=env, partnera=Partners[i], partnerb=Partners[i + 1])]
