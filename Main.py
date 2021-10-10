@@ -27,7 +27,7 @@ class Relationship(object):
         self.partnerb = partnerb
 
     def BreakUp(self):
-        if self.partnerb.value >= self.partnerb.ayzeh or self.partnera.value >= self.partnera.ayzeh:
+        if self.partnerb.value >= self.partnerb.ayzeh and self.partnera.value >= self.partnera.ayzeh:
             return False
         else:
             return True
