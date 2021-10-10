@@ -16,7 +16,7 @@ class Partner(object):
         self.worth = random.random()
         self.mawada = 1
         self.chaos = 1
-        self.value = (self.mawada / self.worth) * self.ayzeh * self.chaos
+        self.value = (self.mawada / self.worth) * self.ayzeh
 
 
 env = simpy.Environment()
@@ -35,10 +35,10 @@ class Relationship(object):
             return True
 
 
-Partners = [Partner() for _ in range(2000000)]
+Partners = [Partner() for _ in range(200000)]
 print(Partners[60].value)
 Relationships = []
-for i in range(0, 2000000, 2):
+for i in range(0, 200000, 2):
     Relationships.append([Relationship(env=env, partnera=Partners[i], partnerb=Partners[i + 1])])
 
 print(Relationships[30][0].partnerb.value)
@@ -139,7 +139,10 @@ def badyehchange(relation):
                 relation[0].partnerb.badyeh -= 1
 
 
-n = 0
+sumworth = 0
+summawada = 0
+sumayzeh = 0
+sumbadyeh = 0
 while date != 120:
     date += 1
     for relation in Relationships:
@@ -150,10 +153,18 @@ while date != 120:
         relation[0].partnera.chaos = random.randint(-2, 3)
         relation[0].partnerb.chaos = random.randint(-2, 3)
         relation[0].partnera.value = (relation[0].partnera.mawada / relation[0].partnera.worth) * relation[
-            0].partnera.ayzeh * relation[0].partnera.chaos
+            0].partnera.ayzeh
         relation[0].partnerb.value = (relation[0].partnerb.mawada / relation[0].partnerb.worth) * relation[
-            0].partnerb.ayzeh * relation[0].partnerb.chaos
+            0].partnerb.ayzeh
         if relation[0].breakup():
             Relationships.remove(relation)  # del relation didn't work msh 3arf leh
-    print("from outside loop" + str(len(Relationships)))
-    print(n)
+    print("from outside loop " + str(date) + " " + str(len(Relationships)))
+for relation in Relationships:
+    sumworth += relation[0].partnera.worth + relation[0].partnerb.worth
+    summawada += relation[0].partnera.mawada + relation[0].partnerb.mawada
+    sumayzeh += relation[0].partnera.ayzeh + relation[0].partnerb.ayzeh
+    sumbadyeh += relation[0].partnera.badyeh + relation[0].partnerb.badyeh
+print(summawada / (len(Relationships) * 2))
+print(sumworth / (len(Relationships) * 2))
+print(sumayzeh / (len(Relationships) * 2))
+print(sumbadyeh / (len(Relationships) * 2))
