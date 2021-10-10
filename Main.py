@@ -1,6 +1,7 @@
 import random
 import simpy
 import statistics
+from matplotlib import pyplot as plt
 
 date = 0
 
@@ -65,8 +66,6 @@ def selfworthchange(relation):
         relation[0].partnera.worth = random.random()
     if probability(50):
         relation[0].partnerb.worth = random.random()
-    else:
-        pass
 
 
 def ayzehchange(relation):  ##ugly af mekassl afaker
@@ -143,6 +142,7 @@ sumworth = 0
 summawada = 0
 sumayzeh = 0
 sumbadyeh = 0
+graph = []
 while date != 120:
     date += 1
     for relation in Relationships:
@@ -158,7 +158,7 @@ while date != 120:
             0].partnerb.ayzeh
         if relation[0].breakup():
             Relationships.remove(relation)  # del relation didn't work msh 3arf leh
-    print("from outside loop " + str(date) + " " + str(len(Relationships)))
+    graph.append(len(Relationships))
 for relation in Relationships:
     sumworth += relation[0].partnera.worth + relation[0].partnerb.worth
     summawada += relation[0].partnera.mawada + relation[0].partnerb.mawada
@@ -168,3 +168,5 @@ print(summawada / (len(Relationships) * 2))
 print(sumworth / (len(Relationships) * 2))
 print(sumayzeh / (len(Relationships) * 2))
 print(sumbadyeh / (len(Relationships) * 2))
+plt.plot(graph)
+plt.show()
