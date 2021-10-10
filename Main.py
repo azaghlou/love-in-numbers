@@ -8,7 +8,7 @@ def probability(chance):
     return random.random() < chance / 100
 
 
-class Partners(object):
+class Partner(object):
     def __init__(self):
         self.ayzeh = 10
         self.badyeh = 10
@@ -29,3 +29,7 @@ class Relationship(object):
         self.env = env
         self.partnera = partnera
         self.partnerb = partnerb
+
+
+Partners = [Partner() for _ in range(100)]
+print(Partners[1].value)
