@@ -1,5 +1,4 @@
 import random
-
 import simpy
 import statistics
 
@@ -17,12 +16,6 @@ class Partner(object):
         self.chaos = 1
         self.value = (self.mawada / self.worth) * self.ayzeh * self.chaos
 
-    def BreakUp(self):
-        if self.value >= self.ayzeh:
-            return False
-        else:
-            return True
-
 
 env = simpy.Environment()
 
@@ -32,6 +25,12 @@ class Relationship(object):
         self.env = env
         self.partnera = partnera
         self.partnerb = partnerb
+
+    def BreakUp(self):
+        if self.partnerb.value >= self.partnerb.ayzeh or self.partnera.value >= self.partnera.ayzeh:
+            return False
+        else:
+            return True
 
 
 Partners = [Partner() for _ in range(2000000)]
