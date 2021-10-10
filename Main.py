@@ -35,8 +35,10 @@ class Relationship(object):
 
 
 Partners = [Partner() for _ in range(2000000)]
-print(Partners[55].value)
+print(Partners[60].value)
 Relationships = []
-for i in range(0, 1000000):
+for i in range(0, 1000000, 2):
     Relationships.append([Relationship(env=env, partnera=Partners[i], partnerb=Partners[i + 1])])
-    i += 1
+
+print(Relationships[30][0].partnerb.value)
+print(Relationships[30][0].partnera.value)
